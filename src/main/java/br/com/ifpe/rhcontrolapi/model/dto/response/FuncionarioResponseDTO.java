@@ -1,34 +1,29 @@
-package br.com.ifpe.rhcontrolapi.model;
+package br.com.ifpe.rhcontrolapi.model.dto.response;
 
+import br.com.ifpe.rhcontrolapi.model.Cargo;
+import br.com.ifpe.rhcontrolapi.model.Endereco;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.UUID;
 
-@Entity
-public class Funcionario {
+public class FuncionarioResponseDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(columnDefinition = "BINARY(16)")
     private UUID codigoFuncionario;
     private String nome;
     private String nomeSocial;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate dataNascimento;
-    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private Cargo cargo;
-    @Column(nullable = false, unique = true)
     private String cpf;
-    @Column(nullable = false, unique = true)
     private String rg;
     private Endereco endereco;
 
-    public Funcionario() {
+
+    public FuncionarioResponseDTO() {
     }
 
-    public Funcionario(UUID codigoFuncionario, String nome, String nomeSocial, LocalDate dataNascimento, Cargo cargo, String cpf, String rg, Endereco endereco) {
+    public FuncionarioResponseDTO(UUID codigoFuncionario, String nome, String nomeSocial, LocalDate dataNascimento, Cargo cargo, String cpf, String rg, Endereco endereco) {
         this.codigoFuncionario = codigoFuncionario;
         this.nome = nome;
         this.nomeSocial = nomeSocial;

@@ -2,11 +2,12 @@ package br.com.ifpe.rhcontrolapi.service.impl;
 
 import br.com.ifpe.rhcontrolapi.model.Cargo;
 import br.com.ifpe.rhcontrolapi.repository.CargoRepository;
+import br.com.ifpe.rhcontrolapi.service.CargoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CargoServiceImpl {
+public class CargoServiceImpl implements CargoService {
 
     @Autowired
     CargoRepository repository;

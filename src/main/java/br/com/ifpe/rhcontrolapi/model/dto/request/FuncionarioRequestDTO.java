@@ -1,4 +1,4 @@
-package br.com.ifpe.rhcontrolapi.model.dto;
+package br.com.ifpe.rhcontrolapi.model.dto.request;
 
 import br.com.ifpe.rhcontrolapi.model.Endereco;
 import com.fasterxml.jackson.annotation.JsonFormat;

@@ -1,7 +1,7 @@
 package br.com.ifpe.rhcontrolapi.controller;
 
 import br.com.ifpe.rhcontrolapi.model.Cargo;
-import br.com.ifpe.rhcontrolapi.service.impl.CargoServiceImpl;
+import br.com.ifpe.rhcontrolapi.service.CargoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class CargoController {
 
     @Autowired
-    private CargoServiceImpl service;
+    private CargoService service;
 
     @GetMapping("/{codigoCargo}")
     public ResponseEntity<Cargo> getCargo(@PathVariable Long codigoCargo) throws Exception {
