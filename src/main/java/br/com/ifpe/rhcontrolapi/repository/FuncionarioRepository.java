@@ -1,9 +1,8 @@
 package br.com.ifpe.rhcontrolapi.repository;
 
-import br.com.ifpe.rhcontrolapi.model.Funcionario;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.UUID;
+import br.com.ifpe.rhcontrolapi.model.Funcionario;
 
-public interface FuncionarioRepository extends JpaRepository<Funcionario, UUID> {
+public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> {
 }

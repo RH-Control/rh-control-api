@@ -1,18 +1,24 @@
 package br.com.ifpe.rhcontrolapi.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.UUID;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Funcionario {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(columnDefinition = "BINARY(16)")
-    private UUID codigoFuncionario;
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long codigoFuncionario;
     private String nome;
     private String nomeSocial;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
@@ -28,7 +34,7 @@ public class Funcionario {
     public Funcionario() {
     }
 
-    public Funcionario(UUID codigoFuncionario, String nome, String nomeSocial, LocalDate dataNascimento, Cargo cargo, String cpf, String rg, Endereco endereco) {
+    public Funcionario(Long codigoFuncionario, String nome, String nomeSocial, LocalDate dataNascimento, Cargo cargo, String cpf, String rg, Endereco endereco) {
         this.codigoFuncionario = codigoFuncionario;
         this.nome = nome;
         this.nomeSocial = nomeSocial;
@@ -39,11 +45,11 @@ public class Funcionario {
         this.endereco = endereco;
     }
 
-    public UUID getCodigoFuncionario() {
+    public Long getCodigoFuncionario() {
         return codigoFuncionario;
     }
 
-    public void setCodigoFuncionario(UUID codigoFuncionario) {
+    public void setCodigoFuncionario(Long codigoFuncionario) {
         this.codigoFuncionario = codigoFuncionario;
     }
 

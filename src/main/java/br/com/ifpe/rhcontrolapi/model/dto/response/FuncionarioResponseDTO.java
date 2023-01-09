@@ -1,15 +1,15 @@
 package br.com.ifpe.rhcontrolapi.model.dto.response;
 
-import br.com.ifpe.rhcontrolapi.model.Cargo;
-import br.com.ifpe.rhcontrolapi.model.Endereco;
+import java.time.LocalDate;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import java.time.LocalDate;
-import java.util.UUID;
+import br.com.ifpe.rhcontrolapi.model.Cargo;
+import br.com.ifpe.rhcontrolapi.model.Endereco;
 
 public class FuncionarioResponseDTO {
 
-    private UUID codigoFuncionario;
+    private Long codigoFuncionario;
     private String nome;
     private String nomeSocial;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
@@ -23,7 +23,7 @@ public class FuncionarioResponseDTO {
     public FuncionarioResponseDTO() {
     }
 
-    public FuncionarioResponseDTO(UUID codigoFuncionario, String nome, String nomeSocial, LocalDate dataNascimento, Cargo cargo, String cpf, String rg, Endereco endereco) {
+    public FuncionarioResponseDTO(Long codigoFuncionario, String nome, String nomeSocial, LocalDate dataNascimento, Cargo cargo, String cpf, String rg, Endereco endereco) {
         this.codigoFuncionario = codigoFuncionario;
         this.nome = nome;
         this.nomeSocial = nomeSocial;
@@ -34,11 +34,11 @@ public class FuncionarioResponseDTO {
         this.endereco = endereco;
     }
 
-    public UUID getCodigoFuncionario() {
+    public Long getCodigoFuncionario() {
         return codigoFuncionario;
     }
 
-    public void setCodigoFuncionario(UUID codigoFuncionario) {
+    public void setCodigoFuncionario(Long codigoFuncionario) {
         this.codigoFuncionario = codigoFuncionario;
     }
 
