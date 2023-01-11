@@ -1,5 +1,6 @@
 package br.com.ifpe.rhcontrolapi.service;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -17,5 +18,11 @@ public interface PontoService {
 	Ponto updateStatusPonto(Long codigoPonto, String status) throws Exception;
 
 	void deletePonto(Long codigoPonto);
+	
+	List<Ponto> listarPontosByCodigoFuncionario(Long codigoFuncionario, LocalDate data) throws Exception;
+
+	boolean checkIfPontoIsClosed(Ponto ponto);
+
+	BigDecimal getTotalHourByClosedPonto(Ponto ponto);
 	
 }
