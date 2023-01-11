@@ -1,6 +1,7 @@
 package br.com.ifpe.rhcontrolapi.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,12 +27,15 @@ public class CargoServiceImpl implements CargoService {
 	}
 
 	public Cargo updateCargo(Cargo cargo, Long codigoCargo) throws Exception {
-		Boolean hasCargo = repository.existsById(codigoCargo);
+		Optional<Cargo> existingCargo = repository.findById(codigoCargo);
 
-		if (!hasCargo)
+		if (!existingCargo.isPresent()) {
 			throw new Exception("Cargo não existe!");
+		}
+		existingCargo.get().setHoraSalario(cargo.getHoraSalario());
+		existingCargo.get().setNome(cargo.getNome());
 
-		return repository.save(cargo);
+		return repository.save(existingCargo.get());
 	}
 
 	public void deleteCargo(Long codigoCargo) {
