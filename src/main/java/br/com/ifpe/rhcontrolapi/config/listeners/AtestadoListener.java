@@ -47,6 +47,7 @@ public class AtestadoListener {
                 try {
                    Funcionario funcionario = funcionarioService.getFuncionarioById(codigoFuncionario);
                    Ponto newPonto = new Ponto(funcionario, diaAbonado.getDiaAbonado());
+                   newPonto.setCodigoPonto((long) Math.random());
                     newPonto.setStatus(StatusPonto.valueOf(StatusPonto.class, status.toUpperCase()));
                     repository.save(newPonto);
                 } catch (Exception e) {
