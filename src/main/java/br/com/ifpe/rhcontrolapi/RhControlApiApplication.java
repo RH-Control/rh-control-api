@@ -2,9 +2,10 @@ package br.com.ifpe.rhcontrolapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.kafka.annotation.EnableKafka;
 
-//@SpringBootApplication(exclude = {HibernateJpaAutoConfiguration.class})
 @SpringBootApplication
+@EnableKafka
 public class RhControlApiApplication {
 
     public static void main(String[] args) {
