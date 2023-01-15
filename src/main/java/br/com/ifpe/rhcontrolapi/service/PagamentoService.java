@@ -12,4 +12,8 @@ public interface PagamentoService {
 
 	Pagamento gerarPagamento(Long codigoFuncionario, String data) throws Exception;
 
+	Pagamento enviarPagamentoPorEmailByCodigo(Long codigoPagamento) throws Exception;
+
+	List<Pagamento> enviarPagamentoPorEmailByCompetencia(String data) throws Exception;
+
 }

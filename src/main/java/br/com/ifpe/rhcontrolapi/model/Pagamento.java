@@ -2,7 +2,6 @@ package br.com.ifpe.rhcontrolapi.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -19,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(uniqueConstraints = 
-@UniqueConstraint(columnNames = {"DATA", "CODIGO_FUNCIONARIO"}, name = "pagamento_uk"))
+@UniqueConstraint(columnNames = {"COMPETENCIA", "CODIGO_FUNCIONARIO"}, name = "pagamento_uk"))
 public class Pagamento {
 
 	@Id
@@ -27,7 +26,10 @@ public class Pagamento {
 	private Long codigoPagamento;
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-	private LocalDate data;
+	private LocalDate competencia;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+	private LocalDate dataDePagamento;
 	
 	private BigDecimal valor;
 	
@@ -46,14 +48,6 @@ public class Pagamento {
 		this.codigoPagamento = codigoPagamento;
 	}
 
-	public LocalDate getData() {
-		return data;
-	}
-
-	public void setData(LocalDate data) {
-		this.data = data;
-	}
-
 	public BigDecimal getValor() {
 		return valor;
 	}
@@ -68,6 +62,22 @@ public class Pagamento {
 
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
+	}
+
+	public LocalDate getCompetencia() {
+		return competencia;
+	}
+
+	public void setCompetencia(LocalDate competencia) {
+		this.competencia = competencia;
+	}
+
+	public LocalDate getDataDePagamento() {
+		return dataDePagamento;
+	}
+
+	public void setDataDePagamento(LocalDate dataDePagamento) {
+		this.dataDePagamento = dataDePagamento;
 	}
 	
 }

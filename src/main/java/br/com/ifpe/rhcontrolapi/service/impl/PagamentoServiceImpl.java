@@ -48,7 +48,8 @@ public class PagamentoServiceImpl implements PagamentoService {
 			return repository.save(pagamento.get());
 		} else {
 			Pagamento newPagamento = new Pagamento();
-			newPagamento.setData(localDate);
+			newPagamento.setCompetencia(localDate);
+			newPagamento.setDataDePagamento(LocalDate.now());
 			Funcionario funcionario = funcionarioService.getFuncionarioById(codigoFuncionario);
 			newPagamento.setFuncionario(funcionario);
 			newPagamento.setValor(calcularSalario(localDate, funcionario));
@@ -70,6 +71,19 @@ public class PagamentoServiceImpl implements PagamentoService {
 		pagamento = totalDeHoras.multiply(horaSalario);
 		
 		return pagamento;
+	}
+
+	public Pagamento enviarPagamentoPorEmailByCodigo(Long codigoPagamento) throws Exception {
+		Pagamento pagamento = repository.findById(codigoPagamento)
+                .orElseThrow(() -> new Exception("Pagamento não encontrado!"));
+		//TODO: enviar o pagamento para o microsserviço de e-mail
+		return pagamento;
+	}
+
+	public List<Pagamento> enviarPagamentoPorEmailByCompetencia(String data) throws Exception {
+		List<Pagamento> pagamentos = repository.findByDate(data).orElseThrow(() -> new Exception("Pagamento não encontrado!"));
+		//TODO: enviar os pagamentos para o microsserviço de e-mail
+		return pagamentos;
 	}
 
 }

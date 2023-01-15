@@ -16,5 +16,8 @@ public interface PagamentoRepository extends JpaRepository<Pagamento, Long> {
 
 	@Query(value = "SELECT * FROM pagamento WHERE codigo_funcionario = ?1 AND data = ?2", nativeQuery = true)
 	Optional<Pagamento> findByCodigoFuncionarioAndDate(Long codigoFuncionario, LocalDate data);
+
+	@Query(value = "SELECT * FROM pagamento WHERE data = ?1", nativeQuery = true)
+	Optional<List<Pagamento>> findByDate(String data);
 	
 }

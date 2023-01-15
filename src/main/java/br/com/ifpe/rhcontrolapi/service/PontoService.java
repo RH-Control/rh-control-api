@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import br.com.ifpe.rhcontrolapi.model.Ponto;
-import br.com.ifpe.rhcontrolapi.model.enums.StatusPonto;
 
 public interface PontoService {
 
