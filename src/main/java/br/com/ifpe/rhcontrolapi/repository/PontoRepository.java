@@ -19,4 +19,7 @@ public interface PontoRepository  extends JpaRepository<Ponto, Long> {
 
 	@Query(value = "SELECT coalesce(max(ponto.codigoPonto), 0) FROM Ponto ponto")
 	Long incrementarCodigoPonto();
+
+	@Query(value = "SELECT * FROM ponto WHERE codigo_funcionario = ?1", nativeQuery = true)
+	Optional<Ponto> findByCodigoFuncionario(Long codigoFuncionario);
 }

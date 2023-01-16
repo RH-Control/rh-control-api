@@ -47,11 +47,10 @@ public class AtestadoListener {
                 try {
                     Funcionario funcionario = funcionarioService.getFuncionarioById(codigoFuncionario);
                     Ponto newPonto = new Ponto(funcionario, diaAbonado.getDiaAbonado());
-                    newPonto.setCodigoPonto(Long.valueOf(repository.incrementarCodigoPonto()) + 1);
+                    newPonto.setCodigoPonto(repository.incrementarCodigoPonto() + 1);
                     newPonto.setStatus(StatusPonto.valueOf(StatusPonto.class, status.toUpperCase()));
                     repository.save(newPonto);
                 } catch (Exception e) {
-                    System.out.println("entrou aqui");
                     throw new RuntimeException(e);
                 }
             }
