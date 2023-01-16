@@ -14,10 +14,10 @@ public interface PagamentoRepository extends JpaRepository<Pagamento, Long> {
 	@Query(value = "SELECT * FROM pagamento WHERE codigo_funcionario = ?1", nativeQuery = true)
 	List<Pagamento> findByCodigoFuncionario(Long codigoFuncionario);
 
-	@Query(value = "SELECT * FROM pagamento WHERE codigo_funcionario = ?1 AND data = ?2", nativeQuery = true)
+	@Query(value = "SELECT * FROM pagamento WHERE codigo_funcionario = ?1 AND competencia = ?2", nativeQuery = true)
 	Optional<Pagamento> findByCodigoFuncionarioAndDate(Long codigoFuncionario, LocalDate data);
 
-	@Query(value = "SELECT * FROM pagamento WHERE data = ?1", nativeQuery = true)
+	@Query(value = "SELECT * FROM pagamento WHERE competencia = ?1", nativeQuery = true)
 	Optional<List<Pagamento>> findByDate(String data);
 	
 }

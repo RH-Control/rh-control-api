@@ -30,6 +30,7 @@ public class Funcionario {
     @Column(nullable = false, unique = true)
     private String rg;
     private Endereco endereco;
+    private String email;
 
     public Funcionario() {
     }
@@ -108,4 +109,12 @@ public class Funcionario {
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 }

@@ -2,7 +2,7 @@ package br.com.ifpe.rhcontrolapi.config;
 
 public enum TopicosKafka {
 
-    TOPICO_TESTE("teste-topico");
+    SEND_MAIL("enviar-email");
 
 	private String descricao;
 	

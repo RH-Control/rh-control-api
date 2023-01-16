@@ -23,6 +23,7 @@ public class FuncionarioMapper {
         funcionario.setRg(funcionarioRequestDTO.getCpf());
         funcionario.setCpf(funcionarioRequestDTO.getCpf());
         funcionario.setEndereco(funcionarioRequestDTO.getEndereco());
+        funcionario.setEmail(funcionarioRequestDTO.getEmail());
 
         return funcionario;
     }

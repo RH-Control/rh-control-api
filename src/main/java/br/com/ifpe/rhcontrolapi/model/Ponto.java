@@ -2,6 +2,9 @@ package br.com.ifpe.rhcontrolapi.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -52,13 +55,13 @@ public class Ponto {
 	
 	public Ponto(Funcionario funcionario, LocalDate data, LocalDateTime horaEntradaInicio) {
 		this.funcionario = funcionario;
-		this.data = data;
+		this.data = this.buildCompetencia(data);
 		this.horaEntradaInicio = horaEntradaInicio;
 	}
 
 	public Ponto(Funcionario funcionario, LocalDate data) {
 		this.funcionario = funcionario;
-		this.data = data;
+		this.data = this.buildCompetencia(data);
 	}
 
 	public Long getCodigoPonto() {
@@ -122,7 +125,16 @@ public class Ponto {
 	}
 
 	public void setData(LocalDate data) {
-		this.data = data;
+		this.data = this.buildCompetencia(data);
+	}
+	
+	private LocalDate buildCompetencia(LocalDate localDate) {
+		Calendar c = Calendar.getInstance();
+		Date data = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+		c.setTime(data);
+		c.set(Calendar.DAY_OF_MONTH, c.getActualMinimum(Calendar.DAY_OF_MONTH));
+		LocalDate comp = c.getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		return comp;
 	}
 	
 }

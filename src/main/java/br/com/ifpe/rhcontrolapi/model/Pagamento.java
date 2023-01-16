@@ -36,6 +36,8 @@ public class Pagamento {
 	@ManyToOne(fetch = FetchType.EAGER,  cascade=CascadeType.ALL)
 	@JoinColumn(name="codigo_funcionario")
 	private Funcionario funcionario;
+	
+	private BigDecimal totalDeHoras;
 
 	public Pagamento() {
 	}
@@ -78,6 +80,21 @@ public class Pagamento {
 
 	public void setDataDePagamento(LocalDate dataDePagamento) {
 		this.dataDePagamento = dataDePagamento;
+	}
+
+	public BigDecimal getTotalDeHoras() {
+		return totalDeHoras;
+	}
+
+	public void setTotalDeHoras(BigDecimal totalDeHoras) {
+		this.totalDeHoras = totalDeHoras;
+	}
+
+	@Override
+	public String toString() {
+		return "Pagamento [codigoPagamento=" + codigoPagamento + ", competencia=" + competencia + ", dataDePagamento="
+				+ dataDePagamento + ", valor=" + valor + ", funcionario=" + funcionario + ", totalDeHoras="
+				+ totalDeHoras + "]";
 	}
 	
 }

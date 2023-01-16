@@ -100,7 +100,7 @@ public class PontoServiceImpl implements PontoService{
 	public List<Ponto> listarPontosByCodigoFuncionario(Long codigoFuncionario, LocalDate data) throws Exception {
 		LocalDate startDate = convertEndDate(data, "start");
 		LocalDate endDate = convertEndDate(data, "end");
-		Optional<List<Ponto>> pontos = repository.buscarPontosPorPeriodoEFuncionario(codigoFuncionario, startDate, endDate);
+		Optional<List<Ponto>> pontos = repository.buscarPontosValidosPorPeriodoEFuncionario(codigoFuncionario, startDate, endDate);
 		if(!pontos.isPresent() || pontos.get().isEmpty()) {
 			throw new Exception("Nenhum ponto encontrado");
 		}
