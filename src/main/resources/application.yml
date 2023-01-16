@@ -11,6 +11,10 @@ spring:
     hibernate.ddl-auto: update
     generate-ddl: true
     show-sql: true
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
   kafka:
     producer:
       bootstrap-servers: localhost:29092

@@ -42,12 +42,12 @@ public class AtestadoListener {
         diasAbonados.forEach(diaAbonado -> {
             Optional<Ponto> ponto = repository.findByCodigoFuncionarioAndDate(codigoFuncionario, diaAbonado.getDiaAbonado());
             if (ponto.isPresent()) {
-                repository.save(configPontoAtestado(ponto.get(),status,diaAbonado.getDiaAbonado()));
+                repository.save(configPontoAtestado(ponto.get(), status, diaAbonado.getDiaAbonado()));
             } else {
                 try {
-                   Funcionario funcionario = funcionarioService.getFuncionarioById(codigoFuncionario);
-                   Ponto newPonto = new Ponto(funcionario, diaAbonado.getDiaAbonado());
-                   newPonto.setCodigoPonto((long) Math.random());
+                    Funcionario funcionario = funcionarioService.getFuncionarioById(codigoFuncionario);
+                    Ponto newPonto = new Ponto(funcionario, diaAbonado.getDiaAbonado());
+                    newPonto.setCodigoPonto(Long.valueOf(repository.incrementarCodigoPonto()) + 1);
                     newPonto.setStatus(StatusPonto.valueOf(StatusPonto.class, status.toUpperCase()));
                     repository.save(newPonto);
                 } catch (Exception e) {
@@ -59,16 +59,16 @@ public class AtestadoListener {
 
     }
 
-    private Ponto configPontoAtestado(Ponto ponto,String status, LocalDate diaAbonado) {
-        if(status.equalsIgnoreCase("ATESTADO")){
-            ponto.setHoraEntradaInicio(LocalDateTime.of(diaAbonado,LocalTime.of(9,0,0)));
-            ponto.setHoraSaidaAlmoco(LocalDateTime.of(diaAbonado,LocalTime.of(12,0,0)));
-            ponto.setHoraEntradaAlmoco(LocalDateTime.of(diaAbonado,LocalTime.of(13,0,0)));
-            ponto.setHorasaidaFim(LocalDateTime.of(diaAbonado,LocalTime.of(18,0,0)));
+    private Ponto configPontoAtestado(Ponto ponto, String status, LocalDate diaAbonado) {
+        if (status.equalsIgnoreCase("ATESTADO")) {
+            ponto.setHoraEntradaInicio(LocalDateTime.of(diaAbonado, LocalTime.of(9, 0, 0)));
+            ponto.setHoraSaidaAlmoco(LocalDateTime.of(diaAbonado, LocalTime.of(12, 0, 0)));
+            ponto.setHoraEntradaAlmoco(LocalDateTime.of(diaAbonado, LocalTime.of(13, 0, 0)));
+            ponto.setHorasaidaFim(LocalDateTime.of(diaAbonado, LocalTime.of(18, 0, 0)));
             ponto.setStatus(StatusPonto.ATESTADO);
 
             return ponto;
-        }else {
+        } else {
             ponto.setHoraEntradaInicio(null);
             ponto.setHoraSaidaAlmoco(null);
             ponto.setHoraEntradaAlmoco(null);

@@ -17,4 +17,6 @@ public interface PontoRepository  extends JpaRepository<Ponto, Long> {
 	@Query(value = "SELECT * FROM ponto WHERE codigo_funcionario = ?1 AND data >= ?2 and data <= ?3", nativeQuery = true)
 	Optional<List<Ponto>> buscarPontosPorPeriodoEFuncionario(Long codigoFuncionario, LocalDate startDate, LocalDate endDate);
 
+	@Query(value = "SELECT coalesce(max(ponto.codigoPonto), 0) FROM Ponto ponto")
+	Long incrementarCodigoPonto();
 }
