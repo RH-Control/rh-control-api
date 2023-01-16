@@ -1,5 +1,6 @@
 package br.com.ifpe.rhcontrolapi.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,13 @@ public class PontoController {
     public ResponseEntity<List<Ponto>> listarPontos() throws Exception {
         return ResponseEntity.status(HttpStatus.OK).body(service.listarPontos());
     }
-	
+
+    @GetMapping("/funcionario/{codigoFuncionario}")
+    public ResponseEntity<List<Ponto>> listarPontosPorFuncionario(@PathVariable("codigoFuncionario") Long codigoFuncionario,
+                                                                  @RequestHeader("data")LocalDate data) throws Exception {
+        return ResponseEntity.status(HttpStatus.OK).body(service.listarPontosByCodigoFuncionario(codigoFuncionario,data));
+    }
+
 	@PostMapping("/{codigoFuncionario}")
 	public ResponseEntity<Ponto> savePonto(@PathVariable Long codigoFuncionario) throws Exception {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.saveOrUpdatePonto(codigoFuncionario));
