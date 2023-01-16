@@ -29,7 +29,7 @@ public class PontoController {
         return ResponseEntity.status(HttpStatus.OK).body(service.listarPontos());
     }
 
-    @GetMapping
+    @GetMapping("/funcionario/{codigoFuncionario}")
     public ResponseEntity<List<Ponto>> listarPontosPorFuncionario(@PathVariable("codigoFuncionario") Long codigoFuncionario,
                                                                   @RequestHeader("data")LocalDate data) throws Exception {
         return ResponseEntity.status(HttpStatus.OK).body(service.listarPontosByCodigoFuncionario(codigoFuncionario,data));
