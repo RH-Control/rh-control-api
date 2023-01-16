@@ -33,8 +33,8 @@ public class PagamentoController {
 	}
 	
 	@PostMapping("/gerar")
-	public ResponseEntity<Pagamento> gerarPagamentos(@RequestHeader Long codigoFuncionario, @RequestHeader String data) throws Exception {
-		return ResponseEntity.status(HttpStatus.OK).body(service.gerarPagamento(codigoFuncionario, data));
+	public ResponseEntity<Pagamento> gerarPagamentos(@RequestHeader Long codigoFuncionario, @RequestHeader String competencia) throws Exception {
+		return ResponseEntity.status(HttpStatus.OK).body(service.gerarPagamento(codigoFuncionario, competencia));
 	}
 	
 	@PostMapping("/enviar/{codigoPagamento}")
