@@ -43,7 +43,7 @@ services:
       KAFKA_BROKERCONNECT: kafka:29092
       
   rhcontrolmail:
-    image: rhcontrolmail:1.0.0
+    image: dyegohbb/rhcontrolmail:1.0.0
     links:
       - kafka
     ports:
