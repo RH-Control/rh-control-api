@@ -3,8 +3,7 @@ server:
   
 spring:
   datasource:
-    driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3307/rhcontrol?createDatabaseIfNotExist=true
+    url: jdbc:mysql://db:3306/rhcontrol?createDatabaseIfNotExist=true
     username: root
     password: password
   jpa:

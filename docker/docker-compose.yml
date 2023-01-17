@@ -6,8 +6,11 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 'password'
+      MYSQL_DATABASE: rhcontrol
     ports:
       - "3307:3306"
+    networks:
+      - rh-control
       
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
@@ -51,4 +54,29 @@ services:
     environment:
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:29092
       KAFKA_BROKERCONNECT: kafka:29092
+
+  rhcontrol:
+    image: dyegohbb/rhcontrol-2:1.0.0
+    depends_on:
+      - db
+      - kafka
+    links:
+      - db
+      - kafka
+    ports:
+      - "8000:8000"
+    networks:
+      - rh-control
+    environment:
+      KAFKA_HOST: kafka:29092
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+      KAFKA_BROKERCONNECT: kafka:29092
+      MYSQL_HOST: db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+      MYSQL_DB: rhcontrol
+      
+networks:
+  rh-control:
+    driver: bridge
 
