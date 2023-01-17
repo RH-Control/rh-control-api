@@ -1,4 +1,4 @@
-version: '3.1'
+version: '3'
 
 services:
   db:
@@ -8,19 +8,17 @@ services:
       MYSQL_ROOT_PASSWORD: 'password'
     ports:
       - "3307:3306"
-
+      
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
-    networks:
-      - broker-kafka
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
 
   kafka:
     image: confluentinc/cp-kafka:latest
-    networks:
-      - broker-kafka
+    links:
+      - zookeeper
     depends_on:
       - zookeeper
     ports:
@@ -35,15 +33,22 @@ services:
 
   kafdrop:
     image: obsidiandynamics/kafdrop:latest
-    networks:
-      - broker-kafka
+    links:
+      - kafka
     depends_on:
       - kafka
     ports:
       - "19000:9000"
     environment:
       KAFKA_BROKERCONNECT: kafka:29092
+      
+  rhcontrolmail:
+    image: rhcontrolmail:1.0.0
+    links:
+      - kafka
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+      KAFKA_BROKERCONNECT: kafka:29092
 
-networks:
-  broker-kafka:
-    driver: bridge
